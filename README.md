@@ -8,7 +8,7 @@ maintained by Antrakt92 with the original MIT licence and credits retained.
 [Auto Continue After Loading on Nexus Mods](https://www.nexusmods.com/cyberpunk2077/mods/34645)
 uses this build for its current 2.5 release.
 
-**[Download 0.5.31-cp25.2 for Windows x64](https://github.com/Antrakt92/redscript/releases/tag/v0.5.31-cp25.2)**
+**[Download on Nexus Mods](https://www.nexusmods.com/cyberpunk2077/mods/35642)** · [GitHub download and checksums](https://github.com/Antrakt92/redscript/releases/tag/v0.5.31-cp25.2)
 
 **Install this instead of the official redscript package, not alongside it.**
 Keep one redscript compiler enabled in your mod manager.
@@ -36,7 +36,10 @@ The [error-buffer fix (#204)](https://github.com/jac3km4/redscript/pull/204) and
 [dependency refresh (#205, draft)](https://github.com/jac3km4/redscript/pull/205)
 are submitted separately, with their own test results and remaining checks.
 This is one community contribution; other contributors are also working on 2.5 support.
-Move back to a supported official release when it includes the required fixes.
+When upstream publishes a supported release, I will compare and test it. If it
+covers the fixes needed here, I will recommend moving back, update my mods'
+requirements and post migration instructions. Existing fork files and source will
+remain available. Further fork releases should have a useful reason to exist.
 
 ## Installation
 
@@ -46,10 +49,13 @@ it does not bundle RED4ext, Codeware, ArchiveXL, CET or gameplay mods.
 For REDmod integration, use a compatible RED4ext release as documented by upstream.
 
 1. Close the game.
-2. Download `redscript-0.5.31-cp25.2-windows.zip` from the release's **Assets**.
+2. Download the Main file from [Nexus Mods](https://www.nexusmods.com/cyberpunk2077/mods/35642),
+   or `redscript-0.5.31-cp25.2-windows.zip` from GitHub release **Assets**.
    GitHub's automatic “Source code” downloads are for developers.
 3. In Vortex, disable the existing redscript package, install this ZIP from file,
-   enable it and deploy. Do not leave both packages enabled.
+   enable it and deploy. Do not leave both packages enabled. This fork has a
+   different Nexus ID and does not automatically satisfy requirements pointing
+   to the original redscript page; collection authors must choose the intended compiler.
 4. Fully restart the game. Check `r6/logs/redscript_rCURRENT.log` for
    `Compilation complete` and `Output successfully saved`.
 
@@ -101,19 +107,15 @@ so they can be separated from upstream issues.
 
 ## Donation Points
 
-This fork is currently distributed on GitHub only. It has no Nexus Mods page,
-so there is no Nexus Donation Points opt-in or active DP split for this fork.
+The [Nexus fork](https://www.nexusmods.com/cyberpunk2077/mods/35642) is opted in
+with a saved split of **95% to jac3km4 and 5% to Antrakt92**. This was checked
+by reloading the Nexus settings and reopening the saved allocation.
 
-If an eligible Nexus release is published and opted in, our intended split is
-**95% to jac3km4, the original project's maintainer, and 5% to Antrakt92** for
-compatibility work and maintaining this build. The original compiler, language
-implementation and architecture account for most of the work; our changes build
-on that foundation.
-
-This is our proposed allocation, not an active payment arrangement or an agreement
-with upstream. It applies only to this fork's own potential Nexus DP earnings,
-not to separate mods that use redscript as a dependency. It adds no conditions
-to the original MIT licence.
+Most of the project is upstream's work; the smaller share supports compatibility
+work and maintenance of this build. This applies only to this fork's DP earnings,
+not to separate mods that depend on redscript. It is our allocation, not an
+agreement or endorsement from upstream. Nexus eligibility and reward rules still
+apply. No extra conditions are added to the MIT licence.
 
 ## Source, credits and permissions
 
