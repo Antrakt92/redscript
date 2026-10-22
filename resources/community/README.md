@@ -1,64 +1,104 @@
-# redscript 0.5.31-cp25.1 — experimental Windows 2.5 compatibility
+# redscript 0.5.31-cp25.2 — unofficial Windows compatibility
 
-Unofficial compatibility build by Antrakt92, based on redscript v0.5.31 by
-jac3km4 and contributors. The original MIT licence is included unchanged.
-Source: https://github.com/Antrakt92/redscript
-Upstream contribution: https://github.com/jac3km4/redscript/pull/203
-Official project: https://github.com/jac3km4/redscript
+Compile redscript mods on Cyberpunk 2077 2.5 for Windows PC. This experimental
+build adapts redscript v0.5.31 to the game's updated full script-cache format.
 
-## Scope
+**[Download 0.5.31-cp25.2 for Windows x64](https://github.com/Antrakt92/redscript/releases/tag/v0.5.31-cp25.2)**
 
-This Windows x64 prerelease adds support for full script bundles from Cyberpunk
-2077 2.5. It also refreshes dependencies and retains engine CLI argument behavior.
-It is intended as a temporary replacement while upstream reviews compatibility.
-Use a supported official release when it includes the necessary fixes.
+**Install this instead of the official redscript package, not alongside it.**
+Keep one redscript compiler enabled in your mod manager.
 
-This is not a general fix for every mod broken by 2.5. Mods using changed game
-APIs or native frameworks may need their own updates. The verified runtime scene
-is a minimal profile with RED4ext 1.30.0 and an unreleased Auto Continue 1.1.2 test
-build: startup compilation, save loading, one automatic final confirmation and a
-rendered game world. Full collections and other platforms are not verified.
+## What changes
 
-## Install
+Compared with official redscript v0.5.31:
 
-Close the game. In Vortex, disable the existing redscript package, install this
-ZIP from file, enable it and deploy. Keep one compiler enabled. Do not install
-this as an additional dependency alongside the official redscript package.
+- Reads the additional table used by 2.5 full script bundles and writes matching
+  table counts, offsets and checksums after compiling mods. Legacy bundles remain supported.
+- Preserves an unchanged extended bundle byte for byte and rejects unsupported
+  external patch bundles with an explicit error.
+- Corrects the compiler's signature marker for the 2.5 native loader.
+- Finishes serialization before opening the output file. A serialization failure
+  therefore leaves an existing output intact; writes are not atomic once they start.
+- Refreshes reviewed dependencies and adapts the engine command-line parser,
+  including a working `--help`. Some dependency upgrades remain deferred.
+- Fixes the DLL error-copy API writing into a buffer whose declared capacity is zero
+  (added in 0.5.31-cp25.2).
 
-For a manual installation, keep a backup of the existing redscript files, then
-extract this ZIP into the game root. The files engine/tools/scc.exe and
-engine/tools/scc_lib.dll must end up inside that installation, not a second
-nested Cyberpunk 2077 directory. Do not install a second copy through a manager.
+This is a compatibility fork maintained by Antrakt92. The original compiler is
+by [jac3km4 and contributors](https://github.com/jac3km4/redscript).
+The format changes have been submitted as [upstream PR #203](https://github.com/jac3km4/redscript/pull/203).
+This is one community contribution; other contributors are also working on 2.5 support.
+Move back to a supported official release when it includes the required fixes.
 
-The package does not include RED4ext, Codeware, CET, ArchiveXL, game caches or
-other mods. For a REDmod setup, use a compatible RED4ext release as documented
-by upstream. Each mod's other requirements remain its own responsibility.
+## Installation
 
-## Verify and revert
+For **Cyberpunk 2077 2.5, Windows x64**. Other mods and frameworks must support
+your game version separately. This package includes the compiler and its configuration;
+it does not bundle RED4ext, Codeware, ArchiveXL, CET or gameplay mods.
+For REDmod integration, use a compatible RED4ext release as documented by upstream.
 
-Check r6/logs/redscript_rCURRENT.log after a full game restart. A successful run
-reports Compilation complete and Output successfully saved. Preserve the error
-log if compilation fails; do not share private save files or account information.
+1. Close the game.
+2. Download `redscript-0.5.31-cp25.2-windows.zip` from the release's **Assets**.
+   GitHub's automatic “Source code” downloads are for developers.
+3. In Vortex, disable the existing redscript package, install this ZIP from file,
+   enable it and deploy. Do not leave both packages enabled.
+4. Fully restart the game. Check `r6/logs/redscript_rCURRENT.log` for
+   `Compilation complete` and `Output successfully saved`.
 
-To return to upstream, disable this package and enable a supported official
-redscript build, then deploy. Do not leave both enabled. Do not restore a script
-cache backup from a different game patch. Keep the previous package for rollback.
+For manual installation, back up the existing redscript files and extract the ZIP
+into the game folder. You should have `engine/tools/scc.exe` and
+`engine/tools/scc_lib.dll` inside that folder, without an extra nested game directory.
+Use one installation method. The ZIP's SHA-256 is supplied in `SHA256SUMS.txt`.
 
-## Known limits
+To return to the official build through Vortex, disable this package, enable a
+supported official redscript package and deploy. With a manual install, remove
+this package's four compiler/configuration files and its `redscript-community`
+documentation directory, then install the complete supported official package.
+Do not delete shared script folders or restore cache backups from another game patch.
+The exact package file list is in `BUILD-MANIFEST.json` on the release page.
 
-External patch bundles that require a precompiled-base resolver are unsupported;
-compile against the pristine full game cache. Nonzero producer linkage fields
-are not fully understood. Windows-only distribution: optional non-Windows GTK
-advisory matches are not fixed here. flexstr 0.11 ownership/API migration is deferred.
-No performance improvement or universal compatibility is claimed.
+## Compatibility and testing
 
-The local suite passed 6231 tests and Clippy excluding scc-lib-tests, which needs
-libclang. The exported DLL was checked independently with compiler error popups
-disabled. Official REDmod SCC accepted 2.5 outputs in LoadAndSave and functional
-comparison checks. See COMPATIBILITY-2.5.md in the source for the format scope.
+The 2.5 compiler changes were tested in a minimal profile with RED4ext 1.30.0 and
+an unreleased Auto Continue 1.1.2 build: compilation, save loading, automatic final
+confirmation and a rendered game world. That game run used the preceding DEV2
+build. The public cp25.2 binaries have separate isolated DLL/CLI and official
+REDmod SCC interoperability checks; the exact public ZIP has not been retested
+in the running game. The cp25.2 runtime change is the zero-capacity error-buffer guard.
 
-The native game smoke test used the preceding DEV2 build. All 46 Rust source
-files and the registry/git dependency pins match this version; the public version
-changes package metadata and documentation. The final release DLL/CLI also pass
-separate isolated API and official-SCC checks. Exact public ZIP installation in
-other users' profiles remains prerelease testing.
+The local suite passes **6232 tests** and Clippy, excluding the bindgen-based
+`scc-lib-tests` suite because libclang is unavailable. Stable formatting checks pass
+with nightly-only options ignored. This is not full collection or cross-platform validation.
+
+Mods using changed game APIs and native plugins may still need their own updates.
+A compiler update does not establish compatibility for those mods. No performance
+improvement is claimed.
+
+## Known limits and troubleshooting
+
+- External patch bundles requiring a separate precompiled base are unsupported.
+  Normal compilation is checked against the pristine full game cache. Other nonzero
+  producer linkage fields are not fully understood.
+- The flexstr 0.11 migration and optional non-Windows GTK advisory matches remain
+  unresolved. This is a Windows-only distribution, not an all-platform dependency cleanup.
+- Existing parser/FFI paths have not received exhaustive malformed-input or fuzz testing.
+  Output writes are not crash-safe transactions.
+
+If compilation fails, keep the error log and report your game version, this build's
+version, other frameworks and steps to reproduce in
+[this fork's issues](https://github.com/Antrakt92/redscript/issues).
+Do not share private saves or account information. Report fork-specific failures here
+so they can be separated from upstream issues.
+
+## Source, credits and permissions
+
+The original **MIT licence remains unchanged**. The download includes third-party,
+Rust and MinGW runtime notices. No additional Donation Points or custom reuse
+conditions apply to this fork.
+
+[Technical changes and limits](https://github.com/Antrakt92/redscript/blob/v0.5.31-cp25.2/COMPATIBILITY-2.5.md) ·
+[Build and packaging instructions](https://github.com/Antrakt92/redscript/blob/v0.5.31-cp25.2/BUILD-COMMUNITY.md) ·
+[Original v0.5.31 developer documentation](https://github.com/jac3km4/redscript/blob/v0.5.31/README.md)
+
+AI tools were used to write and review the compatibility changes and documentation.
+Third-party components retain their original credits and licences.

@@ -9,7 +9,7 @@ cargo build --locked --workspace --exclude scc-lib-tests
 cargo test --locked --workspace --exclude scc-lib-tests
 cargo clippy --locked --workspace --exclude scc-lib-tests --all-targets
 cargo build --locked --release -p redscript-cli -p scc-lib -p scc --features mmap,popup
-python resources/package-community.py --output target/redscript-0.5.31-cp25.1-windows.zip
+python resources/package-community.py --output target/redscript-0.5.31-cp25.2-windows.zip
 ```
 
 If CARGO_TARGET_DIR is overridden, pass the same directory to the packager using
@@ -20,7 +20,8 @@ unexpected input layout. It does not modify the game, install mods or publish.
 The separate scc-lib-tests suite requires libclang. Install it in a developer
 build environment to run the original generated C ABI tests. The published
 release also has independent DLL/API checks with error popups disabled, plus
-official REDmod SCC interoperability and a minimal in-game test. These do not
+official REDmod SCC interoperability. The minimal in-game test used the preceding
+DEV2 build; the exact public ZIP was not retested in-game. These checks do not
 replace full-collection, cross-platform or exhaustive malformed-input coverage.
 
 The archive includes the original redscript MIT licence, dependency notices,

@@ -11,7 +11,7 @@ members = [
 resolver = "2"
 
 [workspace.package]
-version = "0.5.31-cp25.1"
+version = "0.5.31-cp25.2"
 authors = ["jekky"]
 edition = "2024"
 
