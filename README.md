@@ -1,7 +1,12 @@
-# redscript — unofficial Cyberpunk 2077 2.5 compatibility build
+# redscript — unofficial fork for Cyberpunk 2077 2.5
 
 Compile redscript mods on Cyberpunk 2077 2.5 for Windows PC. This experimental
 build adapts redscript v0.5.31 to the game's updated full script-cache format.
+
+This is a public fork of [jac3km4/redscript](https://github.com/jac3km4/redscript),
+maintained by Antrakt92 with the original MIT licence and credits retained.
+[Auto Continue After Loading on Nexus Mods](https://www.nexusmods.com/cyberpunk2077/mods/34645)
+uses this build for its current 2.5 release.
 
 **[Download 0.5.31-cp25.2 for Windows x64](https://github.com/Antrakt92/redscript/releases/tag/v0.5.31-cp25.2)**
 
@@ -63,7 +68,8 @@ The exact package file list is in `BUILD-MANIFEST.json` on the release page.
 ## Compatibility and testing
 
 The 2.5 compiler changes were tested in a minimal profile with RED4ext 1.30.0 and
-an unreleased Auto Continue 1.1.2 build: compilation, save loading, automatic final
+the Auto Continue 1.1.2 DEV build (the same payload is now
+[published on Nexus](https://www.nexusmods.com/cyberpunk2077/mods/34645)): compilation, save loading, automatic final
 confirmation and a rendered game world. That game run used the preceding DEV2
 build. The public cp25.2 binaries have separate isolated DLL/CLI and official
 REDmod SCC interoperability checks; the exact public ZIP has not been retested
