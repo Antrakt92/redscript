@@ -1,0 +1,57 @@
+[size=5][b]redscript - Antrakt92 fork for 2.5[/b][/size]
+
+This is an unofficial fork of [url=https://www.nexusmods.com/cyberpunk2077/mods/1511]redscript by jac3km4 and contributors[/url], maintained by Antrakt92 for Cyberpunk 2077 2.5 on Windows x64. It builds on redscript v0.5.31 and adapts the compiler to the game's updated script-cache format.
+
+[b]Install this instead of the original redscript package. Keep only one redscript compiler enabled.[/b] This is an experimental compatibility release. Other mods and frameworks still need to support your game version.
+
+[url=https://github.com/Antrakt92/redscript]Source code and issue tracker[/url] | [url=https://github.com/Antrakt92/redscript/releases/tag/v0.5.31-cp25.2]GitHub release and checksums[/url] | [url=https://github.com/jac3km4/redscript]Original project[/url]
+
+[size=4][b]What changed[/b][/size]
+
+Compared with official redscript v0.5.31:
+[list]
+[*]Reads the extra table in 2.5 full script bundles and updates its counts, offsets and checksums when compiling mods.
+[*]Preserves unchanged extended bundles byte for byte. Unsupported external patch bundles are rejected with an explicit error.
+[*]Corrects the compiler signature marker used by the 2.5 native loader.
+[*]Finishes serialization before opening the output file, so serialization errors leave an existing output intact. File writes are not atomic once they start.
+[*]Refreshes reviewed dependencies and updates the engine command-line parser, including a working --help. Some upgrades remain deferred.
+[*]Fixes the DLL error-copy API writing to a buffer with a declared capacity of zero. This fix was added in cp25.2.
+[/list]
+
+The original compiler, language implementation and architecture are the work of jac3km4 and contributors. Our changes have been submitted upstream as [url=https://github.com/jac3km4/redscript/pull/203]2.5 format support (#203)[/url], [url=https://github.com/jac3km4/redscript/pull/204]the error-buffer fix (#204)[/url] and [url=https://github.com/jac3km4/redscript/pull/205]a dependency refresh (#205, draft)[/url]. Other contributors are also working on 2.5 support. This release is not endorsed by the upstream author.
+
+[size=4][b]Installation[/b][/size]
+
+For Cyberpunk 2077 2.5, Windows x64. Close the game first.
+
+[b]Vortex:[/b] disable your existing redscript package, install this page's Main file, enable it and deploy. Do not leave both packages enabled. This page has a different Nexus ID, so it will not automatically satisfy requirements that point to the original redscript page; collection authors need to choose the intended compiler.
+
+[b]Manual:[/b] back up your existing redscript files, then extract the ZIP into the game folder. You should have engine/tools/scc.exe and engine/tools/scc_lib.dll there, without an extra nested game directory. Use one installation method.
+
+Fully restart the game. Check r6/logs/redscript_rCURRENT.log for Compilation complete and Output successfully saved.
+
+This package includes the compiler and configuration. It does not bundle RED4ext, Codeware, CET, ArchiveXL or gameplay mods. For REDmod integration, use a compatible RED4ext release as documented by upstream. [url=https://www.nexusmods.com/cyberpunk2077/mods/34645]Auto Continue After Loading[/url] requires RED4ext separately.
+
+[size=4][b]Testing and known limits[/b][/size]
+
+The 2.5 compiler changes were tested in a minimal profile with RED4ext 1.30.0 and Auto Continue 1.1.2 DEV: compilation, save loading, automatic final confirmation and a rendered game world. That run used the preceding DEV2 compiler. The public cp25.2 binaries passed separate isolated DLL/CLI and official REDmod SCC interoperability checks; this exact public ZIP has not been retested in the running game. Its runtime change from DEV2 is the zero-capacity error-buffer guard.
+
+The local suite passes 6232 tests and Clippy. The bindgen-based scc-lib-tests suite remains excluded because libclang is unavailable. Stable formatting checks pass with nightly-only options ignored. This is not full collection or cross-platform validation, and no performance improvement is claimed.
+
+External patch bundles requiring a separate base are unsupported; other nonzero producer linkage fields are not fully understood. The flexstr 0.11 migration and advisory matches in the optional non-Windows GTK dependency path remain unresolved. Parser/FFI paths have not received exhaustive fuzz testing. See [url=https://github.com/Antrakt92/redscript/blob/codex/redscript-cp25-release/COMPATIBILITY-2.5.md]technical notes[/url] for details.
+
+[size=4][b]Support and future official updates[/b][/size]
+
+Please report problems with this build on [url=https://github.com/Antrakt92/redscript/issues]the fork's issue tracker[/url], with the game version, compiler version, error log, other frameworks and steps to reproduce. Keep private saves and account information out of reports.
+
+I maintain this fork and will review fixes and compatibility reports as far as I can. When upstream publishes a supported release, I will compare and test it. If it covers the fixes needed here, I will recommend moving back, update my mods' requirements and post migration instructions. Existing fork files and source will remain available. Further fork releases should have a useful reason to exist.
+
+To switch through Vortex, disable this fork, enable the supported official package and deploy. For manual installs, remove this package's four compiler/configuration files and redscript-community documentation directory, then install the complete official package. The exact file list is in BUILD-MANIFEST.json on GitHub. Do not delete shared script folders or restore cache backups from a different game patch.
+
+[size=4][b]Credits, permissions and Donation Points[/b][/size]
+
+Original project: jac3km4 and all redscript contributors. Compatibility changes and maintenance of this fork: Antrakt92. The original MIT licence and copyright notices are retained. Third-party components keep their own licences; notices are included in the download. No custom reuse or Donation Points conditions are added to MIT.
+
+This fork is opted in to Nexus Donation Points with a saved split of [b]95% to jac3km4 and 5% to Antrakt92[/b]. Most of the project is upstream's work; the smaller share supports compatibility work and maintenance of this build. This applies only to this fork's DP earnings, not to separate mods that depend on redscript. It is our allocation, not an agreement or endorsement from upstream. Nexus eligibility and reward rules still apply.
+
+AI tools were used to write and review the compatibility changes and documentation.
