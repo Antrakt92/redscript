@@ -1,3 +1,19 @@
+# Unofficial Cyberpunk 2077 2.5 compatibility build
+
+Experimental Windows replacement for redscript v0.5.31. Original project by
+[jac3km4 and contributors](https://github.com/jac3km4/redscript), MIT licensed.
+
+Download the Windows ZIP from [this fork's releases](https://github.com/Antrakt92/redscript/releases).
+Read [installation and known limits](resources/community/README.md) first.
+Use one redscript compiler at a time. This does not update other native frameworks
+or repair mods that use changed game APIs. Return to upstream when its supported
+release includes the required compatibility changes.
+
+Our format contribution is [upstream PR #203](https://github.com/jac3km4/redscript/pull/203).
+[Technical scope](COMPATIBILITY-2.5.md). [Build instructions](BUILD-COMMUNITY.md).
+
+---
+
 <img align="left" width="0px" height="18px"/>
 <img src="https://user-images.githubusercontent.com/11986158/145484796-9bf1f77f-e706-4e15-b46b-c9b949f0086c.png" align="left" width="100px" height="100px"/>
 
