@@ -1,3 +1,13 @@
+# Compatibility fork retired — use official redscript
+
+Official [redscript 0.5.32 or later](https://www.nexusmods.com/cyberpunk2077/mods/1511) supports Cyberpunk 2077 2.5. Auto Continue now points back to the official package. Disable this fork in Vortex and deploy before installing official redscript; keep only one compiler enabled.
+
+The Nexus release has been hidden as obsolete. This GitHub fork, old assets and upstream PRs remain available as contribution history. No further compatibility release is planned at present.
+
+The sections below preserve the historical release notes, installation advice and credits. Their recommendation to install this fork is superseded by this notice.
+
+---
+
 # redscript — unofficial fork for Cyberpunk 2077 2.5
 
 Compile redscript mods on Cyberpunk 2077 2.5 for Windows PC. This experimental
