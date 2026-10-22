@@ -99,6 +99,22 @@ version, other frameworks and steps to reproduce in
 Do not share private saves or account information. Report fork-specific failures here
 so they can be separated from upstream issues.
 
+## Donation Points
+
+This fork is currently distributed on GitHub only. It has no Nexus Mods page,
+so there is no Nexus Donation Points opt-in or active DP split for this fork.
+
+If an eligible Nexus release is published and opted in, our intended split is
+**95% to jac3km4, the original project's maintainer, and 5% to Antrakt92** for
+compatibility work and maintaining this build. The original compiler, language
+implementation and architecture account for most of the work; our changes build
+on that foundation.
+
+This is our proposed allocation, not an active payment arrangement or an agreement
+with upstream. It applies only to this fork's own potential Nexus DP earnings,
+not to separate mods that use redscript as a dependency. It adds no conditions
+to the original MIT licence.
+
 ## Source, credits and permissions
 
 The original **MIT licence remains unchanged**. The download includes third-party,
