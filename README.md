@@ -27,6 +27,9 @@ Compared with official redscript v0.5.31:
 This is a compatibility fork maintained by Antrakt92. The original compiler is
 by [jac3km4 and contributors](https://github.com/jac3km4/redscript).
 The format changes have been submitted as [upstream PR #203](https://github.com/jac3km4/redscript/pull/203).
+The [error-buffer fix (#204)](https://github.com/jac3km4/redscript/pull/204) and
+[dependency refresh (#205, draft)](https://github.com/jac3km4/redscript/pull/205)
+are submitted separately, with their own test results and remaining checks.
 This is one community contribution; other contributors are also working on 2.5 support.
 Move back to a supported official release when it includes the required fixes.
 
